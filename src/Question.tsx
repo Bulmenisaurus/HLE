@@ -37,8 +37,6 @@ export default function Question(props: {
         renderLatex(text, questionText.current);
     }, []);
 
-    // debugger;
-
     return (
         <main className='container container-question'>
             <span className='number'>Question {index + 1}/10</span>

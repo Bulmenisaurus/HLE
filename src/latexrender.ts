@@ -1,13 +1,20 @@
 import { render } from 'katex';
 
-const latexRegex = /((?:\$.*?\$)|(?:\\\[.*?\\\]))/s;
+const latexRegex = /((?:\$\$.+?\$\$)|(?:\$.+?\$)|(?:\\\[.*?\\\])|(?:\\\(.*?\\\)))/s;
 
 export const isLatex = (text: string): boolean => {
+    console.log(text);
     return latexRegex.test(text);
 };
 
 export const renderLatexWithDelimeter = (text: string, element: HTMLElement) => {
-    let inlineDollarSign = text.match(/^\$(.*)\$$/);
+    let doubleDollar = text.match(/^\$\$(.*)\$\$$/s);
+    if (doubleDollar) {
+        render(doubleDollar[1], element, { displayMode: true });
+        return;
+    }
+
+    let inlineDollarSign = text.match(/^\$(.*)\$$/s);
     if (inlineDollarSign) {
         render(inlineDollarSign[1], element, { displayMode: false });
         return;
@@ -17,6 +24,11 @@ export const renderLatexWithDelimeter = (text: string, element: HTMLElement) => 
     if (bracketNotation) {
         render(bracketNotation[1], element, { displayMode: true });
         return;
+    }
+
+    let parens = text.match(/\\\((.*?)\\\)/s);
+    if (parens) {
+        render(parens[1], element, { displayMode: false });
     }
 
     console.error('Not supposed to be here');

@@ -37,7 +37,7 @@ export default function AppContent() {
         getData().then((d) => {
             setState({
                 type: 'question',
-                questionIdx: 0,
+                questionIdx: 4,
                 data: { questions: d, cumulativeCorrect: 0 },
             });
         });

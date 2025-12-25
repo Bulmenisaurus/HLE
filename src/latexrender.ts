@@ -3,7 +3,6 @@ import { render } from 'katex';
 const latexRegex = /((?:\$.*?\$)|(?:\\\[.*?\\\]))/s;
 
 export const isLatex = (text: string): boolean => {
-    console.log(text);
     return latexRegex.test(text);
 };
 

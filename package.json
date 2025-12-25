@@ -1,0 +1,27 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "build": "esbuild src/script.tsx --bundle --minify --outdir=dist",
+    "build:watch": "esbuild src/script.tsx --bundle --outdir=dist --watch --servedir=."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browserify": "^17.0.1",
+    "csv-parser": "^3.2.0",
+    "esbuild": "^0.27.2",
+    "katex": "^0.16.27",
+    "papaparse": "^5.5.3",
+    "preact": "^10.28.1",
+    "prettier": "^3.7.4",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/papaparse": "^5.5.2"
+  }
+}

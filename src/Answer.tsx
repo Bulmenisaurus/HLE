@@ -8,12 +8,9 @@ import { isLatex, renderLatex } from './latexrender';
 // To avoid reading the image bytes, inferring a mime type and creating a correct data url, we just create a blob from the image data and pass that in.
 const renderImageBytes = (bytes: string): string => {
     let dataArray: Uint8Array<ArrayBuffer>;
-    try {
-        // @ts-ignore
-        dataArray = Uint8Array.fromBase64(bytes);
-    } catch {
-        dataArray = Uint8Array.from(bytes, (c: string) => c.charCodeAt(0));
-    }
+
+    // dataArray = Uint8Array.fromBase64(bytes);
+    dataArray = Uint8Array.from(atob(bytes), (c: string) => c.charCodeAt(0));
 
     const blob = new Blob([dataArray]);
     const src = URL.createObjectURL(blob);
